@@ -1,6 +1,12 @@
 from django.contrib.admin import register, ModelAdmin
-from .models import Post
+from .models import Post, Comment
 
+
+@register(Comment)
+class CommentAdmin(ModelAdmin):
+    list_display = ('name', 'email', 'post', 'created', 'active')
+    list_filter = ('active', 'created', 'updated',)
+    search_fields = ('name', 'email', 'body',)
 
 @register(Post)
 class PostAdmin(ModelAdmin):
